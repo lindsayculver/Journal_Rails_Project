@@ -1,0 +1,27 @@
+<ul>
+<% @entries.each do |entry| %>
+  <li><%= entry.content %></li>
+<% end %>
+</ul>
+
+<% if false %>
+<%= form_for @new_entry do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
+<% end %>
+
+
+<%= form_tag update_multiple_entries_path, method: :put do %>
+
+        <% @entries.each do |entry| %>
+          <%= fields_for "entries[]", entry do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, class:"form-control" %>
+            </div>
+          <% end %>
+        <% end %>
+
+    <% end %>
+
+  
